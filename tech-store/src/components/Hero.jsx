@@ -1,6 +1,13 @@
 import './Hero.css'
 
-function Hero() {
+function Hero({ onNavigate }) {
+  const scrollToCategories = () => {
+    const section = document.getElementById('categories')
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <section className="hero">
       <div className="container hero-inner">
@@ -16,8 +23,12 @@ function Hero() {
             engineered for those who expect more.
           </p>
           <div className="hero-actions">
-            <button className="btn btn-primary">Shop Now</button>
-            <button className="btn btn-secondary">Explore Collection</button>
+            <button className="btn btn-primary" onClick={() => onNavigate('products')}>
+              Shop Now
+            </button>
+            <button className="btn btn-secondary" onClick={scrollToCategories}>
+              Explore Collection
+            </button>
           </div>
         </div>
 

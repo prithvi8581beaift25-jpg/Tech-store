@@ -114,3 +114,8 @@ img {
   background: var(--color-border-strong);
   border-radius: var(--radius-full);
 }
+.products-count {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+  margin-top: -1rem;
+}

@@ -12,7 +12,7 @@ const categories = [
 
 function Categories() {
   return (
-    <section className="section">
+    <section className="section" id="categories">
       <div className="container">
         <h2 className="section-title">Shop by Category</h2>
         <div className="categories-grid">

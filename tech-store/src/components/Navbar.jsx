@@ -1,20 +1,35 @@
 import { useState } from 'react'
 import './Navbar.css'
 
-function Navbar() {
+function Navbar({ currentPage, onNavigate }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const navLinks = ['Home', 'Products', 'Deals', 'About']
+  const navLinks = [
+    { label: 'Home', page: 'home' },
+    { label: 'Products', page: 'products' },
+  ]
+
+  const handleNavigate = (page) => {
+    onNavigate(page)
+    setIsMenuOpen(false)
+  }
 
   return (
     <nav className="navbar glass">
       <div className="container navbar-inner">
-        <a href="/" className="navbar-logo">NEXORA</a>
+        <button className="navbar-logo" onClick={() => handleNavigate('home')}>
+          NEXORA
+        </button>
 
         <ul className="navbar-links">
           {navLinks.map((link) => (
-            <li key={link}>
-              <a href="#">{link}</a>
+            <li key={link.page}>
+              <button
+                className={currentPage === link.page ? 'active' : ''}
+                onClick={() => handleNavigate(link.page)}
+              >
+                {link.label}
+              </button>
             </li>
           ))}
         </ul>
@@ -67,8 +82,8 @@ function Navbar() {
         <div className="mobile-menu">
           <ul>
             {navLinks.map((link) => (
-              <li key={link}>
-                <a href="#" onClick={() => setIsMenuOpen(false)}>{link}</a>
+              <li key={link.page}>
+                <button onClick={() => handleNavigate(link.page)}>{link.label}</button>
               </li>
             ))}
           </ul>
