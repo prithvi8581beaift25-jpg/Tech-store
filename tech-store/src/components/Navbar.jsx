@@ -1,17 +1,45 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import './Navbar.css'
 
-function Navbar({ currentPage, onNavigate }) {
+function Navbar({ currentPage, onNavigate, searchTerm, onSearchChange }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const searchInputRef = useRef(null)
 
-  const navLinks = [
+    const navLinks = [
     { label: 'Home', page: 'home' },
     { label: 'Products', page: 'products' },
+    { label: 'About', page: 'about' },
+    { label: 'Contact', page: 'contact' },
   ]
+
+  useEffect(() => {
+    if (isSearchOpen) {
+      searchInputRef.current?.focus()
+    }
+  }, [isSearchOpen])
 
   const handleNavigate = (page) => {
     onNavigate(page)
     setIsMenuOpen(false)
+    setIsSearchOpen(false)
+  }
+
+  const toggleSearch = () => {
+    if (isSearchOpen) {
+      setIsSearchOpen(false)
+      onSearchChange('')
+    } else {
+      setIsSearchOpen(true)
+      if (currentPage !== 'products') {
+        onNavigate('products')
+      }
+    }
+  }
+
+  const clearSearch = () => {
+    onSearchChange('')
+    searchInputRef.current?.focus()
   }
 
   return (
@@ -35,12 +63,34 @@ function Navbar({ currentPage, onNavigate }) {
         </ul>
 
         <div className="navbar-actions">
-          <button className="icon-btn" aria-label="Search">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="11" cy="11" r="7" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-          </button>
+          <div className={`nav-search ${isSearchOpen ? 'nav-search-open' : ''}`}>
+            <button className="icon-btn" aria-label="Search" onClick={toggleSearch}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </button>
+
+            <input
+              ref={searchInputRef}
+              type="text"
+              className="nav-search-input"
+              placeholder="Search products, brands..."
+              value={searchTerm}
+              onChange={(e) => onSearchChange(e.target.value)}
+              tabIndex={isSearchOpen ? 0 : -1}
+              aria-label="Search products"
+            />
+
+            {isSearchOpen && searchTerm && (
+              <button className="nav-search-clear" onClick={clearSearch} aria-label="Clear search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            )}
+          </div>
 
           <button className="icon-btn" aria-label="Wishlist">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
