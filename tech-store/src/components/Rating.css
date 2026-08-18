@@ -1,0 +1,26 @@
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.rating-stars {
+  display: flex;
+  gap: 1px;
+  color: var(--color-warning);
+}
+
+.rating-stars svg {
+  width: 13px;
+  height: 13px;
+}
+
+.rating-value {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+
+.rating-count {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}

@@ -4,9 +4,8 @@ import Categories from './components/Categories'
 import FeaturedProducts from './components/FeaturedProducts'
 import Promo from './components/Promo'
 import Footer from './components/Footer'
+import ProductGrid from './components/ProductGrid'
 import { products } from './data/products'
-
-console.log(products.length, products)
 
 function App() {
   return (
@@ -15,6 +14,14 @@ function App() {
       <Hero />
       <Categories />
       <FeaturedProducts />
+
+      <section className="section">
+        <div className="container">
+          <h2 className="section-title">All Products (Test)</h2>
+          <ProductGrid products={products} />
+        </div>
+      </section>
+
       <Promo />
       <Footer />
     </>
