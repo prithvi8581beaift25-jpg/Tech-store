@@ -1,0 +1,35 @@
+.products-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xs);
+}
+
+.filter-toggle {
+  display: none;
+}
+
+.products-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--space-md);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .filter-toggle {
+    display: inline-flex;
+  }
+
+  .products-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-panel-wrapper {
+    display: none;
+  }
+
+  .filter-panel-wrapper.open {
+    display: block;
+  }
+}

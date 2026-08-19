@@ -1,0 +1,92 @@
+.filter-panel {
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  height: fit-content;
+  position: sticky;
+  top: 88px;
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.filter-header h3 {
+  font-size: var(--fs-base);
+}
+
+.filter-clear {
+  font-size: var(--fs-xs);
+  color: var(--color-accent-blue);
+  font-weight: 600;
+}
+
+.filter-clear:hover {
+  text-decoration: underline;
+}
+
+.filter-group {
+  margin-bottom: var(--space-md);
+}
+
+.filter-group h4 {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.filter-chip {
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-strong);
+  font-size: var(--fs-xs);
+  color: var(--color-text-secondary);
+  transition: var(--transition-fast);
+}
+
+.filter-chip:hover {
+  border-color: var(--color-text-primary);
+  color: var(--color-text-primary);
+}
+
+.filter-chip.active {
+  background: var(--gradient-accent);
+  border-color: transparent;
+  color: #fff;
+}
+
+.filter-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 0.3rem;
+}
+
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.filter-checkbox input {
+  accent-color: var(--color-accent-blue);
+  width: 15px;
+  height: 15px;
+}
+
+.filter-checkbox:hover {
+  color: var(--color-text-primary);
+}
