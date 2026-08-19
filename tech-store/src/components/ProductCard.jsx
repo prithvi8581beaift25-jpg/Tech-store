@@ -1,8 +1,13 @@
 import Rating from './Rating'
 import { categoryGradients } from '../utils/categoryColors'
+import { useCart } from '../context/CartContext'
 import './ProductCard.css'
 
 function ProductCard({ product }) {
+  const { cartItems, addToCart, increaseQuantity, decreaseQuantity } = useCart()
+
+  const cartItem = cartItems.find((item) => item.id === product.id)
+
   return (
     <div className="product-card glass">
       <div className="product-image-wrapper">
@@ -35,7 +40,21 @@ function ProductCard({ product }) {
           )}
         </div>
 
-        <button className="btn btn-primary product-btn">Add to Cart</button>
+        {cartItem ? (
+          <div className="product-qty-stepper">
+            <button onClick={() => decreaseQuantity(product.id)} aria-label="Decrease quantity">
+              −
+            </button>
+            <span>{cartItem.quantity}</span>
+            <button onClick={() => increaseQuantity(product.id)} aria-label="Increase quantity">
+              +
+            </button>
+          </div>
+        ) : (
+          <button className="btn btn-primary product-btn" onClick={() => addToCart(product)}>
+            Add to Cart
+          </button>
+        )}
       </div>
     </div>
   )

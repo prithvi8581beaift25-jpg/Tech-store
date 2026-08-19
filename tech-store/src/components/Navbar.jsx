@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from 'react'
 import './Navbar.css'
+import { useCart } from '../context/CartContext'
 
 function Navbar({ currentPage, onNavigate, searchTerm, onSearchChange }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const searchInputRef = useRef(null)
+  const { cartCount } = useCart()
 
     const navLinks = [
     { label: 'Home', page: 'home' },
@@ -104,7 +106,7 @@ function Navbar({ currentPage, onNavigate, searchTerm, onSearchChange }) {
               <path d="M3 6h18" />
               <path d="M16 10a4 4 0 0 1-8 0" />
             </svg>
-            <span className="cart-badge">0</span>
+                        <span className="cart-badge">{cartCount}</span>
           </button>
 
           <button

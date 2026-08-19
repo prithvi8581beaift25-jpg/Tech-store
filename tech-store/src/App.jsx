@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Toast from './components/Toast'
 import Home from './pages/Home'
 import Products from './pages/Products'
 import About from './pages/About'
@@ -23,6 +24,7 @@ function App() {
       {currentPage === 'about' && <About />}
       {currentPage === 'contact' && <Contact />}
       <Footer />
+      <Toast />
     </>
   )
 }
