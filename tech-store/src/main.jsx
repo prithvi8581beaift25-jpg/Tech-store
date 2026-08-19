@@ -2,13 +2,16 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import { CartProvider } from './context/CartContext'
+import { WishlistProvider } from './context/WishlistContext'
 import './styles/variables.css'
 import './styles/global.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <CartProvider>
-      <App />
+      <WishlistProvider>
+        <App />
+      </WishlistProvider>
     </CartProvider>
   </StrictMode>,
 )

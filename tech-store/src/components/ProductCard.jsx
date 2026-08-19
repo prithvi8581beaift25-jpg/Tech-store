@@ -1,12 +1,15 @@
 import Rating from './Rating'
 import { categoryGradients } from '../utils/categoryColors'
 import { useCart } from '../context/CartContext'
+import { useWishlist } from '../context/WishlistContext'
 import './ProductCard.css'
 
 function ProductCard({ product }) {
   const { cartItems, addToCart, increaseQuantity, decreaseQuantity } = useCart()
+  const { isInWishlist, toggleWishlist } = useWishlist()
 
   const cartItem = cartItems.find((item) => item.id === product.id)
+  const inWishlist = isInWishlist(product.id)
 
   return (
     <div className="product-card glass">
@@ -21,6 +24,21 @@ function ProductCard({ product }) {
         ) : product.newArrival ? (
           <span className="product-badge product-badge-new">NEW</span>
         ) : null}
+
+        <button
+          className={`wishlist-btn ${inWishlist ? 'active' : ''}`}
+          onClick={() => toggleWishlist(product)}
+          aria-label="Toggle wishlist"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill={inWishlist ? 'currentColor' : 'none'}
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z" />
+          </svg>
+        </button>
       </div>
 
       <div className="product-info">

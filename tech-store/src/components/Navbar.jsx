@@ -1,12 +1,14 @@
 import { useState, useRef, useEffect } from 'react'
 import './Navbar.css'
 import { useCart } from '../context/CartContext'
+import { useWishlist } from '../context/WishlistContext'
 
 function Navbar({ currentPage, onNavigate, searchTerm, onSearchChange }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const searchInputRef = useRef(null)
   const { cartCount } = useCart()
+  const { wishlistCount } = useWishlist()
 
     const navLinks = [
     { label: 'Home', page: 'home' },
@@ -94,10 +96,11 @@ function Navbar({ currentPage, onNavigate, searchTerm, onSearchChange }) {
             )}
           </div>
 
-          <button className="icon-btn" aria-label="Wishlist">
+                    <button className="icon-btn" aria-label="Wishlist">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z" />
             </svg>
+            {wishlistCount > 0 && <span className="cart-badge">{wishlistCount}</span>}
           </button>
 
           <button className="icon-btn" aria-label="Cart">
@@ -106,7 +109,7 @@ function Navbar({ currentPage, onNavigate, searchTerm, onSearchChange }) {
               <path d="M3 6h18" />
               <path d="M16 10a4 4 0 0 1-8 0" />
             </svg>
-                        <span className="cart-badge">{cartCount}</span>
+              <span className="cart-badge">{cartCount}</span>
           </button>
 
           <button
