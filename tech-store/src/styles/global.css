@@ -116,6 +116,4 @@ img {
 }
 .products-count {
   color: var(--color-text-secondary);
-  margin-bottom: var(--space-md);
-  margin-top: -1rem;
 }

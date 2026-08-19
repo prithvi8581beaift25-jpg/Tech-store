@@ -9,6 +9,17 @@
   display: none;
 }
 
+.products-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.products-toolbar .products-count {
+  margin-bottom: 0;
+}
+
 .products-layout {
   display: grid;
   grid-template-columns: 240px 1fr;
@@ -19,6 +30,11 @@
 @media (max-width: 768px) {
   .filter-toggle {
     display: inline-flex;
+  }
+
+  .products-toolbar {
+    flex-wrap: wrap;
+    gap: var(--space-xs);
   }
 
   .products-layout {

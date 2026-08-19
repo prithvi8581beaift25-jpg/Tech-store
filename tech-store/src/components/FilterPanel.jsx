@@ -7,6 +7,12 @@ function FilterPanel({
   brands,
   selectedBrands,
   onBrandToggle,
+  priceRanges,
+  selectedPriceLabel,
+  onPriceRangeChange,
+  ratingOptions,
+  selectedRating,
+  onRatingChange,
   onClearFilters,
 }) {
   return (
@@ -26,6 +32,36 @@ function FilterPanel({
               onClick={() => onCategoryChange(category)}
             >
               {category}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="filter-group">
+        <h4>Price Range</h4>
+        <div className="filter-chips">
+          {priceRanges.map((range) => (
+            <button
+              key={range.label}
+              className={`filter-chip ${selectedPriceLabel === range.label ? 'active' : ''}`}
+              onClick={() => onPriceRangeChange(range.label)}
+            >
+              {range.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="filter-group">
+        <h4>Minimum Rating</h4>
+        <div className="filter-chips">
+          {ratingOptions.map((rating) => (
+            <button
+              key={rating}
+              className={`filter-chip ${selectedRating === rating ? 'active' : ''}`}
+              onClick={() => onRatingChange(rating)}
+            >
+              {rating === 0 ? 'All' : `${rating}★ & up`}
             </button>
           ))}
         </div>
