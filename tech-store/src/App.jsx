@@ -8,10 +8,18 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Cart from './pages/Cart'
 import Wishlist from './pages/Wishlist'
+import ProductDetails from './pages/ProductDetails'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
   const [searchTerm, setSearchTerm] = useState('')
+  const [selectedProductId, setSelectedProductId] = useState(null)
+
+  const viewProduct = (id) => {
+    setSelectedProductId(id)
+    setCurrentPage('product-details')
+    window.scrollTo(0, 0)
+  }
 
   return (
     <>
@@ -21,12 +29,22 @@ function App() {
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
       />
-      {currentPage === 'home' && <Home onNavigate={setCurrentPage} />}
-      {currentPage === 'products' && <Products searchTerm={searchTerm} />}
+      {currentPage === 'home' && <Home onNavigate={setCurrentPage} onViewProduct={viewProduct} />}
+      {currentPage === 'products' && (
+        <Products searchTerm={searchTerm} onViewProduct={viewProduct} />
+      )}
       {currentPage === 'about' && <About />}
       {currentPage === 'contact' && <Contact />}
       {currentPage === 'cart' && <Cart onNavigate={setCurrentPage} />}
       {currentPage === 'wishlist' && <Wishlist onNavigate={setCurrentPage} />}
+      {currentPage === 'product-details' && (
+        <ProductDetails
+          key={selectedProductId}
+          productId={selectedProductId}
+          onNavigate={setCurrentPage}
+          onViewProduct={viewProduct}
+        />
+      )}
       <Footer />
       <Toast />
     </>

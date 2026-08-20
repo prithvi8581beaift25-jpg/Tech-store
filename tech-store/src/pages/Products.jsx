@@ -19,7 +19,7 @@ const priceRanges = [
 
 const ratingOptions = [0, 4.5, 4, 3.5]
 
-function Products({ searchTerm }) {
+function Products({ searchTerm, onViewProduct }) {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [selectedBrands, setSelectedBrands] = useState([])
   const [selectedPriceLabel, setSelectedPriceLabel] = useState('All')
@@ -103,7 +103,7 @@ function Products({ searchTerm }) {
             />
           </div>
 
-          <ProductGrid products={sortedProducts} />
+          <ProductGrid products={sortedProducts} onViewProduct={onViewProduct} />
         </div>
       </div>
     </section>

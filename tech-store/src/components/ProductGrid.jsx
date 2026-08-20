@@ -1,7 +1,7 @@
 import ProductCard from './ProductCard'
 import './ProductGrid.css'
 
-function ProductGrid({ products }) {
+function ProductGrid({ products, onViewProduct }) {
   if (products.length === 0) {
     return <p className="product-grid-empty">No products found.</p>
   }
@@ -9,7 +9,7 @@ function ProductGrid({ products }) {
   return (
     <div className="product-grid">
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.id} product={product} onViewProduct={onViewProduct} />
       ))}
     </div>
   )

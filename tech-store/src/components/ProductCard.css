@@ -137,3 +137,15 @@
 .wishlist-btn.active {
   color: var(--color-error);
 }
+.product-image-wrapper {
+  cursor: pointer;
+}
+
+.product-name {
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.product-name:hover {
+  color: var(--color-accent-blue);
+}

@@ -4,16 +4,21 @@ import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
 import './ProductCard.css'
 
-function ProductCard({ product }) {
+function ProductCard({ product, onViewProduct }) {
   const { cartItems, addToCart, increaseQuantity, decreaseQuantity } = useCart()
   const { isInWishlist, toggleWishlist } = useWishlist()
 
   const cartItem = cartItems.find((item) => item.id === product.id)
   const inWishlist = isInWishlist(product.id)
 
+  const handleWishlistClick = (e) => {
+    e.stopPropagation()
+    toggleWishlist(product)
+  }
+
   return (
     <div className="product-card glass">
-      <div className="product-image-wrapper">
+      <div className="product-image-wrapper" onClick={() => onViewProduct(product.id)}>
         <div
           className="product-image"
           style={{ background: categoryGradients[product.category] }}
@@ -27,7 +32,7 @@ function ProductCard({ product }) {
 
         <button
           className={`wishlist-btn ${inWishlist ? 'active' : ''}`}
-          onClick={() => toggleWishlist(product)}
+          onClick={handleWishlistClick}
           aria-label="Toggle wishlist"
         >
           <svg
@@ -43,7 +48,9 @@ function ProductCard({ product }) {
 
       <div className="product-info">
         <span className="product-brand">{product.brand}</span>
-        <h3 className="product-name">{product.name}</h3>
+        <h3 className="product-name" onClick={() => onViewProduct(product.id)}>
+          {product.name}
+        </h3>
 
         <Rating value={product.rating} reviews={product.reviews} />
 
