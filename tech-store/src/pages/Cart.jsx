@@ -1,18 +1,12 @@
 import { useCart } from '../context/CartContext'
 import CartItem from '../components/CartItem'
+import { calculateOrderTotals, DISCOUNT_THRESHOLD } from '../utils/pricing'
 import './Cart.css'
-
-const DISCOUNT_THRESHOLD = 50000
-const DISCOUNT_RATE = 0.05
-const FREE_SHIPPING_THRESHOLD = 2000
-const SHIPPING_FEE = 99
 
 function Cart({ onNavigate }) {
   const { cartItems, subtotal } = useCart()
 
-  const discount = subtotal >= DISCOUNT_THRESHOLD ? subtotal * DISCOUNT_RATE : 0
-  const shipping = subtotal >= FREE_SHIPPING_THRESHOLD || subtotal === 0 ? 0 : SHIPPING_FEE
-  const total = subtotal - discount + shipping
+  const { discount, shipping, total } = calculateOrderTotals(subtotal)
 
   if (cartItems.length === 0) {
     return (
@@ -73,7 +67,12 @@ function Cart({ onNavigate }) {
               <span>₹{total.toLocaleString('en-IN')}</span>
             </div>
 
-            <button className="btn btn-primary summary-checkout">Proceed to Checkout</button>
+            <button
+              className="btn btn-primary summary-checkout"
+              onClick={() => onNavigate('checkout')}
+            >
+              Proceed to Checkout
+            </button>
           </div>
         </div>
       </div>

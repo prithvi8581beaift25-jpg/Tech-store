@@ -37,36 +37,6 @@
   gap: var(--space-sm);
 }
 
-.form-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.form-field label {
-  font-size: var(--fs-sm);
-  color: var(--color-text-secondary);
-}
-
-.form-field input,
-.form-field textarea {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-sm);
-  padding: 0.7rem 0.9rem;
-  color: var(--color-text-primary);
-  font-family: inherit;
-  font-size: var(--fs-base);
-  outline: none;
-  resize: vertical;
-  transition: var(--transition-fast);
-}
-
-.form-field input:focus,
-.form-field textarea:focus {
-  border-color: var(--color-accent-blue);
-}
-
 .contact-success {
   color: var(--color-success);
   font-weight: 600;

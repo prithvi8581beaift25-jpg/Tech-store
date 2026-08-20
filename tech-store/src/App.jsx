@@ -9,6 +9,7 @@ import Contact from './pages/Contact'
 import Cart from './pages/Cart'
 import Wishlist from './pages/Wishlist'
 import ProductDetails from './pages/ProductDetails'
+import Checkout from './pages/Checkout'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
@@ -45,6 +46,7 @@ function App() {
           onViewProduct={viewProduct}
         />
       )}
+      {currentPage === 'checkout' && <Checkout onNavigate={setCurrentPage} />}
       <Footer />
       <Toast />
     </>
