@@ -7,6 +7,7 @@ import Products from './pages/Products'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Cart from './pages/Cart'
+import Wishlist from './pages/Wishlist'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
@@ -25,6 +26,7 @@ function App() {
       {currentPage === 'about' && <About />}
       {currentPage === 'contact' && <Contact />}
       {currentPage === 'cart' && <Cart onNavigate={setCurrentPage} />}
+      {currentPage === 'wishlist' && <Wishlist onNavigate={setCurrentPage} />}
       <Footer />
       <Toast />
     </>
