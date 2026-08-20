@@ -21,7 +21,7 @@ function ProductDetails({ productId, onNavigate, onViewProduct }) {
 
   if (!product) {
     return (
-      <section className="section">
+      <section className="section page-fade">
         <div className="container cart-empty">
           <h1 className="section-title">Product Not Found</h1>
           <p>This product may have been removed.</p>

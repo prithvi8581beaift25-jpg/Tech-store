@@ -25,6 +25,11 @@
   justify-content: center;
   font-size: 1.5rem;
   margin: 0 auto var(--space-xs);
+  transition: var(--transition-fast);
+}
+
+.category-card:hover .category-icon {
+  transform: scale(1.1);
 }
 
 .category-card h3 {

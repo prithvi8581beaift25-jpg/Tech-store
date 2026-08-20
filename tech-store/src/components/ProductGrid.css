@@ -10,6 +10,19 @@
   padding: var(--space-xl) 0;
 }
 
+.product-grid .product-card {
+  animation: fadeInUp 0.45s ease both;
+}
+
+.product-grid .product-card:nth-child(1) { animation-delay: 0.02s; }
+.product-grid .product-card:nth-child(2) { animation-delay: 0.06s; }
+.product-grid .product-card:nth-child(3) { animation-delay: 0.10s; }
+.product-grid .product-card:nth-child(4) { animation-delay: 0.14s; }
+.product-grid .product-card:nth-child(5) { animation-delay: 0.18s; }
+.product-grid .product-card:nth-child(6) { animation-delay: 0.22s; }
+.product-grid .product-card:nth-child(7) { animation-delay: 0.26s; }
+.product-grid .product-card:nth-child(8) { animation-delay: 0.30s; }
+
 @media (max-width: 968px) {
   .product-grid {
     grid-template-columns: repeat(3, 1fr);

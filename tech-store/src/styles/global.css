@@ -146,3 +146,78 @@ img {
 .form-field textarea:focus {
   border-color: var(--color-accent-blue);
 }
+/* Semantic landmark + skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -50px;
+  left: var(--space-sm);
+  background: var(--gradient-accent);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  z-index: 999;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: var(--space-sm);
+}
+
+/* Visible focus ring for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Page transition */
+.page-fade {
+  animation: pageFadeIn 0.35s ease;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card entrance animation, reused by ProductGrid */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button press feedback */
+.btn:active,
+.icon-btn:active {
+  transform: scale(0.96);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

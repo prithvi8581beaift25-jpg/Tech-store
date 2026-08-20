@@ -24,29 +24,35 @@ function App() {
 
   return (
     <>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+
       <Navbar
         currentPage={currentPage}
         onNavigate={setCurrentPage}
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
       />
-      {currentPage === 'home' && <Home onNavigate={setCurrentPage} onViewProduct={viewProduct} />}
-      {currentPage === 'products' && (
-        <Products searchTerm={searchTerm} onViewProduct={viewProduct} />
-      )}
-      {currentPage === 'about' && <About />}
-      {currentPage === 'contact' && <Contact />}
-      {currentPage === 'cart' && <Cart onNavigate={setCurrentPage} />}
-      {currentPage === 'wishlist' && <Wishlist onNavigate={setCurrentPage} />}
-      {currentPage === 'product-details' && (
-        <ProductDetails
-          key={selectedProductId}
-          productId={selectedProductId}
-          onNavigate={setCurrentPage}
-          onViewProduct={viewProduct}
-        />
-      )}
-      {currentPage === 'checkout' && <Checkout onNavigate={setCurrentPage} />}
+
+      <main id="main-content" key={currentPage} className="page-fade">
+        {currentPage === 'home' && <Home onNavigate={setCurrentPage} onViewProduct={viewProduct} />}
+        {currentPage === 'products' && (
+          <Products searchTerm={searchTerm} onViewProduct={viewProduct} />
+        )}
+        {currentPage === 'about' && <About />}
+        {currentPage === 'contact' && <Contact />}
+        {currentPage === 'cart' && <Cart onNavigate={setCurrentPage} />}
+        {currentPage === 'wishlist' && <Wishlist onNavigate={setCurrentPage} />}
+        {currentPage === 'product-details' && (
+          <ProductDetails
+            key={selectedProductId}
+            productId={selectedProductId}
+            onNavigate={setCurrentPage}
+            onViewProduct={viewProduct}
+          />
+        )}
+        {currentPage === 'checkout' && <Checkout onNavigate={setCurrentPage} />}
+      </main>
+
       <Footer />
       <Toast />
     </>
