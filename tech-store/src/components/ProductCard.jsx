@@ -18,7 +18,12 @@ function ProductCard({ product, onViewProduct }) {
 
   return (
     <div className="product-card glass">
-      <div className="product-image-wrapper" onClick={() => onViewProduct(product.id)}>
+      <div
+        className="product-image-wrapper"
+        onClick={() => onViewProduct(product.id)}
+        role="img"
+        aria-label={product.name}
+      >
         <div
           className="product-image"
           style={{ background: categoryGradients[product.category] }}
@@ -33,13 +38,14 @@ function ProductCard({ product, onViewProduct }) {
         <button
           className={`wishlist-btn ${inWishlist ? 'active' : ''}`}
           onClick={handleWishlistClick}
-          aria-label="Toggle wishlist"
+          aria-label={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
         >
           <svg
             viewBox="0 0 24 24"
             fill={inWishlist ? 'currentColor' : 'none'}
             stroke="currentColor"
             strokeWidth="2"
+            aria-hidden="true"
           >
             <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z" />
           </svg>
@@ -67,11 +73,11 @@ function ProductCard({ product, onViewProduct }) {
 
         {cartItem ? (
           <div className="product-qty-stepper">
-            <button onClick={() => decreaseQuantity(product.id)} aria-label="Decrease quantity">
+            <button onClick={() => decreaseQuantity(product.id)} aria-label={`Decrease quantity of ${product.name}`}>
               −
             </button>
             <span>{cartItem.quantity}</span>
-            <button onClick={() => increaseQuantity(product.id)} aria-label="Increase quantity">
+            <button onClick={() => increaseQuantity(product.id)} aria-label={`Increase quantity of ${product.name}`}>
               +
             </button>
           </div>

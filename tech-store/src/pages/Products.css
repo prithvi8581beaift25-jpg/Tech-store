@@ -49,3 +49,26 @@
     display: block;
   }
 }
+.products-empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--space-2xl) var(--space-md);
+  color: var(--color-text-secondary);
+}
+
+.products-empty-state svg {
+  width: 48px;
+  height: 48px;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.products-empty-state h3 {
+  font-size: var(--fs-lg);
+  color: var(--color-text-primary);
+  margin-bottom: 0.3rem;
+}
+
+.products-empty-state p {
+  margin-bottom: var(--space-md);
+}

@@ -35,9 +35,13 @@ function App() {
 
       <main id="main-content" key={currentPage} className="page-fade">
         {currentPage === 'home' && <Home onNavigate={setCurrentPage} onViewProduct={viewProduct} />}
-        {currentPage === 'products' && (
-          <Products searchTerm={searchTerm} onViewProduct={viewProduct} />
-        )}
+              {currentPage === 'products' && (
+        <Products
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+          onViewProduct={viewProduct}
+        />
+      )}
         {currentPage === 'about' && <About />}
         {currentPage === 'contact' && <Contact />}
         {currentPage === 'cart' && <Cart onNavigate={setCurrentPage} />}

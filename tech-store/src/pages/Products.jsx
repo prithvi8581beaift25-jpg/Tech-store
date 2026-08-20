@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import FilterPanel from '../components/FilterPanel'
 import SortDropdown from '../components/SortDropdown'
 import ProductGrid from '../components/ProductGrid'
+import ProductCardSkeleton from '../components/ProductCardSkeleton'
 import { products } from '../data/products'
 import './Products.css'
 
@@ -19,13 +20,19 @@ const priceRanges = [
 
 const ratingOptions = [0, 4.5, 4, 3.5]
 
-function Products({ searchTerm, onViewProduct }) {
+function Products({ searchTerm, onSearchChange, onViewProduct }) {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [selectedBrands, setSelectedBrands] = useState([])
   const [selectedPriceLabel, setSelectedPriceLabel] = useState('All')
   const [selectedRating, setSelectedRating] = useState(0)
   const [sortOption, setSortOption] = useState('featured')
   const [isFilterOpen, setIsFilterOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500)
+    return () => clearTimeout(timer)
+  }, [])
 
   const query = searchTerm.trim().toLowerCase()
   const activePriceRange = priceRanges.find((r) => r.label === selectedPriceLabel)
@@ -41,6 +48,11 @@ function Products({ searchTerm, onViewProduct }) {
     setSelectedBrands([])
     setSelectedPriceLabel('All')
     setSelectedRating(0)
+  }
+
+  const clearEverything = () => {
+    clearFilters()
+    onSearchChange('')
   }
 
   const filteredProducts = products.filter((product) => {
@@ -80,7 +92,9 @@ function Products({ searchTerm, onViewProduct }) {
         </div>
 
         <div className="products-toolbar">
-          <p className="products-count">{sortedProducts.length} products</p>
+          <p className="products-count">
+            {isLoading ? 'Loading products…' : `${sortedProducts.length} products`}
+          </p>
           <SortDropdown value={sortOption} onChange={setSortOption} />
         </div>
 
@@ -103,7 +117,29 @@ function Products({ searchTerm, onViewProduct }) {
             />
           </div>
 
-          <ProductGrid products={sortedProducts} onViewProduct={onViewProduct} />
+          {isLoading ? (
+            <div className="product-grid">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <ProductCardSkeleton key={i} />
+              ))}
+            </div>
+          ) : sortedProducts.length === 0 ? (
+            <div className="products-empty-state">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                <line x1="8" y1="8" x2="14" y2="14" />
+                <line x1="14" y1="8" x2="8" y2="14" />
+              </svg>
+              <h3>No products found</h3>
+              <p>Try adjusting your search term or filters.</p>
+              <button className="btn btn-secondary" onClick={clearEverything}>
+                Clear Search &amp; Filters
+              </button>
+            </div>
+          ) : (
+            <ProductGrid products={sortedProducts} onViewProduct={onViewProduct} />
+          )}
         </div>
       </div>
     </section>

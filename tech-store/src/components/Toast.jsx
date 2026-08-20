@@ -17,8 +17,8 @@ function Toast() {
   if (!toastMessage) return null
 
   return (
-    <div className="toast">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <div className="toast" role="status" aria-live="polite">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
         <path d="M20 6 9 17l-5-5" />
       </svg>
       <span>{toastMessage}</span>

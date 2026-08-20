@@ -56,8 +56,9 @@ function Navbar({ currentPage, onNavigate, searchTerm, onSearchChange }) {
         <ul className="navbar-links">
           {navLinks.map((link) => (
             <li key={link.page}>
-              <button
+                            <button
                 className={currentPage === link.page ? 'active' : ''}
+                aria-current={currentPage === link.page ? 'page' : undefined}
                 onClick={() => handleNavigate(link.page)}
               >
                 {link.label}
@@ -69,7 +70,7 @@ function Navbar({ currentPage, onNavigate, searchTerm, onSearchChange }) {
         <div className="navbar-actions">
           <div className={`nav-search ${isSearchOpen ? 'nav-search-open' : ''}`}>
             <button className="icon-btn" aria-label="Search" onClick={toggleSearch}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <circle cx="11" cy="11" r="7" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
@@ -88,7 +89,7 @@ function Navbar({ currentPage, onNavigate, searchTerm, onSearchChange }) {
 
             {isSearchOpen && searchTerm && (
               <button className="nav-search-clear" onClick={clearSearch} aria-label="Clear search">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <line x1="18" y1="6" x2="6" y2="18" />
                   <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
@@ -97,14 +98,14 @@ function Navbar({ currentPage, onNavigate, searchTerm, onSearchChange }) {
           </div>
 
           <button className="icon-btn" aria-label="Wishlist" onClick={() => handleNavigate('wishlist')}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z" />
             </svg>
             {wishlistCount > 0 && <span className="cart-badge">{wishlistCount}</span>}
           </button>
 
           <button className="icon-btn" aria-label="Cart" onClick={() => handleNavigate('cart')}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
               <path d="M3 6h18" />
               <path d="M16 10a4 4 0 0 1-8 0" />
@@ -118,12 +119,12 @@ function Navbar({ currentPage, onNavigate, searchTerm, onSearchChange }) {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             ) : (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <line x1="3" y1="6" x2="21" y2="6" />
                 <line x1="3" y1="12" x2="21" y2="12" />
                 <line x1="3" y1="18" x2="21" y2="18" />
